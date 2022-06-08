@@ -1,0 +1,11 @@
+from urllib.request import urlopen
+url="https://www.star.nesdis.noaa.gov/smcd/emb/vci/VH/get_TS_admin.php?country=UKR&provinceID=10&year1=1981&year2=2022&type=Mean"
+vhi_url = urlopen(url)
+out = open('108061750.csv','wb')
+out.write(vhi_url.read())
+out.close()
+print ("VHI is downloaded...")
+import pandas as pd
+df = pd.read_csv('108061750.csv',index_col=False, header=1)
+print (list(df.columns.values))
+print (df[:1])
